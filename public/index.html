@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk & Institutional Supply — Order Catalog</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">
+      <div class="brand-mark">SC</div>
+      <div>
+        <div class="brand-name">Bulk &amp; Institutional Supply</div>
+        <div class="brand-sub">CATALOG · ORDER · DELIVER</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="#catalog">Catalog</a>
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#trust">Trust &amp; GST</a>
+      <a class="nav-link" href="/admin.html">Admin</a>
+    </div>
+    <button class="btn btn-outline cart-fab" onclick="toggleCart(true)">
+      Manifest <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="wrap">
+    <div class="eyebrow">REQUISITION-GRADE ORDERING</div>
+    <h1>Supply for<br><span class="accent">any</span> headcount.</h1>
+    <p>Upload what you supply once. Buyers say how many people it's for — rations, apparel, gear — and quantities &amp; pricing calculate instantly.</p>
+    <div class="hero-actions">
+      <a href="#catalog" class="btn btn-gold">Browse the catalog</a>
+      <a href="#how" class="btn btn-outline">How ordering works</a>
+    </div>
+
+    <!-- Signature element: bold scale slider -->
+    <div class="scale-panel reveal in">
+      <div class="scale-label">DRAG TO SET PERSONNEL COUNT</div>
+      <div class="scale-number" id="scaleNumber">500</div>
+      <input type="range" id="scaleSlider" min="1" max="10000" value="500" oninput="updateScale()">
+      <div class="scale-range-labels"><span>1</span><span>10,000+</span></div>
+      <div class="scale-grid">
+        <div><div class="scale-stat-label">RICE (0.25 kg/person)</div><div class="scale-stat-value" id="scaleRice">125 kg</div></div>
+        <div><div class="scale-stat-label">FIELD CAPS (1/person)</div><div class="scale-stat-value" id="scaleCaps">500 units</div></div>
+        <div><div class="scale-stat-label">FIRST-AID KITS (0.1/person)</div><div class="scale-stat-value" id="scaleKits">50 kits</div></div>
+        <div><div class="scale-stat-label">ESTIMATED TOTAL</div><div class="scale-stat-value" id="scaleTotal">₹ 1,49,750</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">PROCESS</div>
+        <h2 class="section-title">Three steps.<br>One link.</h2>
+      </div>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-card">
+        <div class="how-num">01</div>
+        <h3>State the headcount</h3>
+        <p>Enter how many people an item needs to cover. Quantities and pricing calculate instantly against per-person rules set on each item.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02</div>
+        <h3>Build the manifest</h3>
+        <p>Add rations, apparel, and gear to one order. Large orders can move to invoicing instead of instant checkout.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03</div>
+        <h3>Pay &amp; confirm</h3>
+        <p>Cash on delivery, online, or advance-plus-balance. Every order gets a requisition number for tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalog">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">CATALOG</div>
+        <h2 class="section-title">Everything<br>on offer.</h2>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+    <div class="empty" id="emptyState" style="display:none">
+      <div class="display" style="font-size:22px">No items yet</div>
+      <p>Items added from the admin panel will appear here.</p>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap trust-grid">
+    <div class="reveal">
+      <div class="eyebrow">TRUST &amp; VERIFICATION</div>
+      <h2 class="section-title" style="margin-bottom:24px">Built for<br>institutional buying.</h2>
+      <p style="color:var(--muted); line-height:1.7; margin-bottom:24px;">Canteens, units, and quartermasters order differently from individual shoppers. Larger orders can route to invoicing with GST details and advance payment, while smaller repeat orders check out instantly.</p>
+      <ul class="trust-list">
+        <li><span class="mark">→</span><span>GST details captured per order for invoicing</span></li>
+        <li><span class="mark">→</span><span>Organization &amp; contact details captured at checkout</span></li>
+        <li><span class="mark">→</span><span>Delivery date and special instructions per order</span></li>
+        <li><span class="mark">→</span><span>Formal tenders route through official channels (e.g. GeM) — this catalog is for direct &amp; repeat orders</span></li>
+      </ul>
+    </div>
+    <div class="reveal pay-card">
+      <h3 style="font-size:20px; margin-bottom:20px;">Payment options</h3>
+      <div class="pay-row"><span>Cash on delivery</span><span>Local / trusted orders</span></div>
+      <div class="pay-row"><span>Online — UPI / card</span><span>Instant checkout</span></div>
+      <div class="pay-row"><span>Advance + balance</span><span>Large bulk orders</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">
+      <div class="brand-mark">SC</div>
+      <div class="mono" style="font-size:12px; color:var(--muted)">© <span id="year"></span> — Replace with business name &amp; contact details.</div>
+    </div>
+    <a href="/admin.html" class="mono" style="font-size:12px; color:var(--muted)">Admin panel →</a>
+  </div>
+</footer>
+
+<div id="scrim" class="scrim" onclick="toggleCart(false)"></div>
+<aside id="drawer" class="drawer">
+  <div class="drawer-head">
+    <div class="display" style="font-size:20px">Manifest</div>
+    <button onclick="toggleCart(false)" class="btn-outline" style="border:none; background:none; font-size:20px; cursor:pointer; color:var(--muted);">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="summary-row"><span>Items</span><span id="cartItemCount">0</span></div>
+    <div class="summary-row summary-total"><span>Total</span><span id="cartTotal">₹ 0</span></div>
+    <button class="btn btn-gold btn-block" onclick="openCheckout()">Proceed to checkout</button>
+  </div>
+</aside>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutScrim" class="modal-scrim">
+  <div class="modal">
+    <div class="step-dots">
+      <span class="dot active" id="dot1"></span><span class="dot" id="dot2"></span><span class="dot" id="dot3"></span>
+      <span class="step-label" id="stepLabel">STEP 1 OF 3 — DELIVERY</span>
+    </div>
+
+    <div id="step1">
+      <h3 class="display" style="font-size:24px; margin-bottom:20px;">Delivery details</h3>
+      <div class="form-grid">
+        <div class="field"><label>Organization / unit name</label><input id="orgName" placeholder="e.g. 4th Battalion Canteen"></div>
+        <div class="field"><label>Contact person *</label><input id="contactName" placeholder="Full name"></div>
+        <div class="field"><label>Phone *</label><input id="contactPhone" placeholder="10-digit mobile"></div>
+        <div class="field"><label>Delivery address *</label><textarea id="deliveryAddr" rows="2" placeholder="Full delivery address"></textarea></div>
+        <div class="form-grid two">
+          <div class="field"><label>Requested date</label><input id="deliveryDate" type="date"></div>
+          <div class="field"><label>GSTIN (optional)</label><input id="gstin" placeholder="For invoice"></div>
+        </div>
+        <div class="field"><label>Special instructions</label><input id="specialInstr" placeholder="Split delivery, gate access, etc."></div>
+      </div>
+      <div class="error-msg" id="step1Error"></div>
+      <button class="btn btn-gold btn-block" style="margin-top:20px" onclick="validateStep1()">Continue to payment</button>
+    </div>
+
+    <div id="step2" style="display:none">
+      <h3 class="display" style="font-size:24px; margin-bottom:20px;">Payment method</h3>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <label class="pay-option"><input type="radio" name="pay" value="cod" checked><div><div class="t">Cash on delivery</div><div class="d">Pay when the order arrives</div></div></label>
+        <label class="pay-option"><input type="radio" name="pay" value="online"><div><div class="t">Online — UPI / card</div><div class="d">Requires Razorpay keys configured on the server</div></div></label>
+        <label class="pay-option"><input type="radio" name="pay" value="advance"><div><div class="t">Advance (30%) + balance on delivery</div><div class="d">For large bulk orders</div></div></label>
+      </div>
+      <div style="display:flex; gap:12px; margin-top:24px;">
+        <button class="btn btn-outline" style="flex:1" onclick="goStep(1)">Back</button>
+        <button class="btn btn-gold" style="flex:1" onclick="goStep(3)">Review order</button>
+      </div>
+    </div>
+
+    <div id="step3" style="display:none">
+      <h3 class="display" style="font-size:24px; margin-bottom:20px;">Review &amp; confirm</h3>
+      <div id="reviewItems" style="max-height:200px; overflow-y:auto;"></div>
+      <div class="divider"></div>
+      <div class="summary-row summary-total"><span>Total</span><span id="reviewTotal"></span></div>
+      <div class="error-msg" id="step3Error"></div>
+      <div style="display:flex; gap:12px; margin-top:8px;">
+        <button class="btn btn-outline" style="flex:1" onclick="goStep(2)">Back</button>
+        <button class="btn btn-gold" style="flex:1" id="confirmBtn" onclick="submitOrder()">Confirm order</button>
+      </div>
+    </div>
+
+    <div id="step4" class="confirm" style="display:none">
+      <div class="stamp">REQUISITION CONFIRMED</div>
+      <div class="reqno mono">Order No. <span id="confirmOrderId"></span></div>
+      <p style="color:var(--muted); font-size:14px; max-width:340px; margin:0 auto 24px;">This has been saved to the order log. Add SMS/WhatsApp notifications server-side when you're ready to go live.</p>
+      <button class="btn btn-gold" onclick="closeCheckout()">Done</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

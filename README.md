@@ -70,9 +70,9 @@ This is a normal Node.js app, so any Node host works: Render, Railway, Fly.io, a
 3. Set the start command to `npm install && npm start`.
 4. **Important — file storage**: `data.sqlite` and `uploads/` are plain files on disk. Most hosting
    platforms (Render, Railway, Fly, etc.) wipe local disk on redeploy unless you attach a *persistent
-   volume/disk* — do that, and point it at the project folder, or your catalog and orders will reset
-   on every deploy. Alternatively, swap SQLite for a hosted Postgres database later (the queries in
-   `server/db.js` are simple and easy to port).
+   volume/disk*. On Render, mount a disk at `/var/data` and set `STORAGE_DIR=/var/data`; this preserves
+   both the database and product images. Alternatively, swap SQLite for a hosted Postgres database later
+   (the queries in `server/db.js` are simple and easy to port).
 5. Point your domain at the host, and you're live. Send your father the storefront link, and keep the
    `/admin.html` link private.
 

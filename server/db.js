@@ -1,8 +1,13 @@
 const path = require('path');
+const fs = require('fs');
 const Database = require('better-sqlite3');
 const bcrypt = require('bcryptjs');
 
-const db = new Database(path.join(__dirname, '..', 'data.sqlite'));
+// Set STORAGE_DIR=/var/data on hosts with a persistent disk. Without it, keep
+// using the project root so local development continues to work as before.
+const storageDir = process.env.STORAGE_DIR || path.join(__dirname, '..');
+fs.mkdirSync(storageDir, { recursive: true });
+const db = new Database(path.join(storageDir, 'data.sqlite'));
 db.pragma('journal_mode = WAL');
 
 db.exec(`

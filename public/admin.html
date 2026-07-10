@@ -43,8 +43,8 @@
 <div id="loginPanel" class="login-box">
   <h3 class="display" style="font-size:22px; margin-bottom:20px;">Admin login</h3>
   <div class="form-grid">
-    <div class="field"><label>Username</label><input id="loginUser"></div>
-    <div class="field"><label>Password</label><input id="loginPass" type="password"></div>
+    <div class="field"><label>Username</label><input id="loginUser" autocapitalize="off" autocorrect="off" autocomplete="username" spellcheck="false"></div>
+    <div class="field"><label>Password</label><input id="loginPass" type="password" autocapitalize="off" autocorrect="off" autocomplete="current-password"></div>
   </div>
   <div class="error-msg" id="loginError"></div>
   <button class="btn btn-gold btn-block" style="margin-top:16px" onclick="login()">Log in</button>

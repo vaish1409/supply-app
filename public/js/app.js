@@ -208,8 +208,10 @@ async function payOnline(order) {
   try {
     session = await api('/orders/payments/create', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ requisition_no: order.requisition_no }) });
   } catch (e) {
-    errEl.textContent = e.message + ' — order saved as pending; you can still complete payment on delivery.';
-    finishOrder(order.requisition_no);
+    // Don't silently finish the order — online payment failed to even start,
+    // so make it loud and keep the buyer on this screen instead of faking success.
+    errEl.textContent = 'Online payment isn\'t available right now (' + e.message + '). Please choose Cash on delivery / advance instead, or try again shortly.';
+    console.error('payments/create failed:', e);
     return;
   }
   await loadRazorpayScript();
@@ -232,6 +234,15 @@ async function payOnline(order) {
       }
     },
     theme: { color: '#D4A537' },
+    modal: {
+      ondismiss: function () {
+        errEl.textContent = 'Payment window closed before completing — your order (' + order.requisition_no + ') is saved as pending. You can retry payment or choose cash on delivery.';
+      },
+    },
+  });
+  rzp.on('payment.failed', function (response) {
+    errEl.textContent = 'Payment failed: ' + (response.error && response.error.description ? response.error.description : 'please try again.');
+    console.error('Razorpay payment.failed:', response.error);
   });
   rzp.open();
 }
